@@ -1,0 +1,21 @@
+import "./styles.css";
+import { useRef } from "react";
+export default function App() {
+  //1st step
+  const inputRef = useRef(null);
+
+  const handleChange = () => {
+    // used to focus on that particular dom element on action
+    // inputRef.current.focus();
+
+    // used to set back to none
+    inputRef.current.value = "";
+  };
+
+  return (
+    <div className="App">
+      <input placeholder="write" type="text" ref={inputRef} />
+      <button onClick={handleChange}>change</button>
+    </div>
+  );
+}
