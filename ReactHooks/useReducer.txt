@@ -1,0 +1,41 @@
+import "./styles.css";
+import {useReducer} from 'react';
+
+const reducer = (state,action) =>{
+  switch(action.type){
+    case "increment" :
+      return {inc:state.inc + 1 ,dec:state.dec, showText:state.showText };
+    case "decrement":
+      return {inc:state.inc , dec:state.dec-1, showText:state.showText};
+    case "toggle":
+      return {inc:state.inc ,dec:state.dec, showText:!state.showText};
+    default:
+      return state;
+  }
+}
+
+export default function App()  {
+  const [state,dispatch] = useReducer(reducer,{
+    inc:0,
+    dec:100,
+    showText:false,
+  })
+ 
+  return (
+    <div className="App">
+      <div style={{border:"1px solid black",color:"maroon",backgroundColor:"yellow",padding:"10px",fontSize:"40px"}}>
+      <h1>{state.dec}</h1>
+      <h1>{state.inc}</h1>
+        {state.showText && <p style={{fontSize:"30px",color:"chocolate"}}>Time starts now!</p> } 
+      </div>
+       
+       <button
+         onClick={()=>{
+           dispatch({type:'increment'})
+           dispatch({type:'toggle'})
+           dispatch({type:'decrement'})
+         }}
+       >start</button>
+    </div>
+  );
+}
