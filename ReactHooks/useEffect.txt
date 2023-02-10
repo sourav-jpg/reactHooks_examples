@@ -1,0 +1,30 @@
+import "./styles.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+export default function App() {
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/comments")
+      .then((response) => {
+        setData(response.data[0].email);
+      });
+  }, [count]);
+  return (
+    <div className="App">
+      <div>
+        <h1>{data}</h1>
+        <h1>{count}</h1>
+      </div>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        start
+      </button>
+    </div>
+  );
+}
