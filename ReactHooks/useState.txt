@@ -1,0 +1,24 @@
+import "./styles.css";
+import { useState } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  const [showText, setShowText] = useState(false);
+
+  return (
+    <div className="App">
+      <div>
+        <h1>{count}</h1>
+        {showText && <p>Time starts now!</p>}
+      </div>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+          setShowText(!showText);
+        }}
+      >
+        start
+      </button>
+    </div>
+  );
+}
