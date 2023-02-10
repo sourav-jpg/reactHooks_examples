@@ -1,0 +1,27 @@
+import "./styles.css";
+import { useLayoutEffect, useEffect, useRef } from "react";
+
+export default function App() {
+  const inputRef = useRef(null);
+
+  //useEffect first loads the page then runs,thats why
+  //for one millisecond we can see padmaraj in the ui before sourav
+  useEffect(() => {
+    inputRef.current.value = "Sourav";
+  }, []);
+
+  //useLayout effect loads faster than useEffect event before the page renders
+  useLayoutEffect(() => {
+    console.log(inputRef.current.value);
+  }, []);
+
+  return (
+    <div className="App">
+      <input
+        value="Padmaraj"
+        ref={inputRef}
+        style={{ width: "200px", height: "100px" }}
+      />
+    </div>
+  );
+}
